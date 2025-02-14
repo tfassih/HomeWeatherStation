@@ -80,7 +80,6 @@ class HomeWeatherStationCore:
             col = []
             i = 0
 
-
             while i < 3:
                 data = self.serial_connection.readline().decode().strip()
                 if not 'T/H' in data and i == 0:
@@ -95,7 +94,6 @@ class HomeWeatherStationCore:
                 return col
 
     def get_temperature(self):
-        """Fetch and update temperature readings."""
         data = self.get_update_data()
         self.temperature.set(data[0] + ' °F' if data else '0 °F')
 
@@ -114,17 +112,17 @@ class HomeWeatherStationCore:
 def schedule_temperature_update(app):
     """Schedule periodic temperature updates."""
     app.get_temperature()
-    app.root.after(5000, schedule_temperature_update, app)  # Reschedule after 1000 ms
+    app.root.after(5000, schedule_temperature_update, app)
 
 def schedule_humidity_update(app):
     """Schedule periodic humidity updates."""
     app.get_humidity()
-    app.root.after(5000, schedule_humidity_update, app)  # Reschedule after 1000 ms
+    app.root.after(5000, schedule_humidity_update, app)
 
 def schedule_thermistor_update(app):
     """Schedule periodic thermistor updates."""
     app.get_thermistor()
-    app.root.after(2000, schedule_thermistor_update, app)  # Reschedule after 1000 ms
+    app.root.after(2000, schedule_thermistor_update, app)
 
 def main():
     root = tk.Tk()
