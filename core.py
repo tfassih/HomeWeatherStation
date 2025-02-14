@@ -58,7 +58,7 @@ class HomeWeatherStationCore:
             try:
                 port = self.port_var.get()
                 print(port)
-                self.serial_connection = serial.Serial(port, 9600, timeout=1)
+                self.serial_connection = serial.Serial(port, 115200, timeout=1)
                 self.connect_btn.config(text="Disconnect")
                 messagebox.showinfo("SUCCESS", f"Connected to {port}")
             except serial.SerialException as e:
@@ -114,17 +114,17 @@ class HomeWeatherStationCore:
 def schedule_temperature_update(app):
     """Schedule periodic temperature updates."""
     app.get_temperature()
-    app.root.after(1000, schedule_temperature_update, app)  # Reschedule after 1000 ms
+    app.root.after(5000, schedule_temperature_update, app)  # Reschedule after 1000 ms
 
 def schedule_humidity_update(app):
     """Schedule periodic humidity updates."""
     app.get_humidity()
-    app.root.after(1000, schedule_humidity_update, app)  # Reschedule after 1000 ms
+    app.root.after(5000, schedule_humidity_update, app)  # Reschedule after 1000 ms
 
 def schedule_thermistor_update(app):
     """Schedule periodic thermistor updates."""
     app.get_thermistor()
-    app.root.after(10, schedule_thermistor_update, app)  # Reschedule after 1000 ms
+    app.root.after(2000, schedule_thermistor_update, app)  # Reschedule after 1000 ms
 
 def main():
     root = tk.Tk()
@@ -137,9 +137,13 @@ def main():
 
 if __name__ == "__main__":
     main()
-                # os.system('cls')
-                # for e in col:
-                #     print(e)
+
+
+
+### old sys code
+# os.system('cls')
+# for e in col:
+#     print(e)
 # machine = serial.Serial(port='COM6', baudrate=9600, timeout=.1)
 # ports = serial.tools.list_ports.comports()
 # choices = []
