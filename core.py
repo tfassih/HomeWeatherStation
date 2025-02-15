@@ -1,7 +1,6 @@
 from typing import Optional
 import serial
 import serial.tools.list_ports
-import time
 import tkinter as tk
 from tkinter import ttk, messagebox, StringVar
 
@@ -36,19 +35,22 @@ class HomeWeatherStationCore:
 
         ttk.Label(self.main_frame, text="DHT11 SENSOR TEMPERATURE READING: ",
                   font=('Arial', 16, 'bold')).pack()
-        self.THLabel = ttk.Label(self.main_frame, textvariable=self.temperature)
+        self.THLabel = ttk.Label(self.main_frame, textvariable=self.temperature,
+                                 font=('Arial', 12))
         self.THLabel.pack()
         self.schedule_update(self.THLabel, self.get_temperature)
 
         ttk.Label(self.main_frame, text="DHT11 SENSOR HUMIDITY READING: ",
                    font=('Arial', 16, 'bold')).pack()
-        self.HHLabel = ttk.Label(self.main_frame, textvariable=self.humidity)
+        self.HHLabel = ttk.Label(self.main_frame, textvariable=self.humidity,
+                                 font=('Arial', 12))
         self.HHLabel.pack()
         self.schedule_update(self.HHLabel, self.get_humidity)
 
         ttk.Label(self.main_frame, text="THERMISTOR READING: ",
                    font=('Arial', 16, 'bold')).pack()
-        self.THERM_Label = ttk.Label(self.main_frame, textvariable=self.thermistor)
+        self.THERM_Label = ttk.Label(self.main_frame, textvariable=self.thermistor,
+                                     font=('Arial', 12))
         self.THERM_Label.pack()
         self.schedule_update(self.THERM_Label, self.get_thermistor)
 
@@ -110,17 +112,14 @@ class HomeWeatherStationCore:
 
 
 def schedule_temperature_update(app):
-    """Schedule periodic temperature updates."""
     app.get_temperature()
     app.root.after(5000, schedule_temperature_update, app)
 
 def schedule_humidity_update(app):
-    """Schedule periodic humidity updates."""
     app.get_humidity()
     app.root.after(5000, schedule_humidity_update, app)
 
 def schedule_thermistor_update(app):
-    """Schedule periodic thermistor updates."""
     app.get_thermistor()
     app.root.after(2000, schedule_thermistor_update, app)
 
@@ -136,7 +135,8 @@ def main():
 if __name__ == "__main__":
     main()
 
-
+### TODO:
+### 1. Add code for IR I/O
 
 ### old sys code
 # os.system('cls')
