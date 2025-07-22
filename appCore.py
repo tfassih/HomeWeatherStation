@@ -97,15 +97,15 @@ class HomeWeatherStationCore:
 
     def get_temperature(self):
         data = self.get_update_data()
-        self.temperature.set(str(data[1]) + ' °F' if data else '0 °F')
+        self.temperature.set(str(data[2]) + ' °F' if data else '0 °F')
 
     def get_humidity(self):
         data = self.get_update_data()
-        self.humidity.set(str(data[2]) + ' %' if data else '0 %')
+        self.humidity.set(str(data[0]) + ' %' if data else '0 %')
 
     def get_thermistor(self):
         data = self.get_update_data()
-        self.thermistor.set(str(data[0]) + ' °F' if data else '0 °F')
+        self.thermistor.set(str(data[1]) + ' °F' if data else '0 °F')
 
     def schedule_update(self, target_widget, callback):
         target_widget.after(self.UPDATE_DELAY, callback)

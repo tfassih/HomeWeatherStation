@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4e9baeb0-7e2c-4b3a-9baf-f94e4efc68ee" name="Changes" comment="moo3">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core.py" beforeDir="false" afterPath="$PROJECT_DIR$/appCore.py" afterDir="false" />
+    <list default="true" id="4e9baeb0-7e2c-4b3a-9baf-f94e4efc68ee" name="Changes" comment="adding interpolation todo and fixed timing issue">
+      <change beforePath="$PROJECT_DIR$/appCore.py" beforeDir="false" afterPath="$PROJECT_DIR$/appCore.py" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -105,7 +104,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739659129673</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="adding interpolation todo and fixed timing issue">
+      <option name="closed" value="true" />
+      <created>1753218679211</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1753218679211</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -126,7 +133,8 @@
     <MESSAGE value="moo" />
     <MESSAGE value="moo2" />
     <MESSAGE value="moo3" />
-    <option name="LAST_COMMIT_MESSAGE" value="moo3" />
+    <MESSAGE value="adding interpolation todo and fixed timing issue" />
+    <option name="LAST_COMMIT_MESSAGE" value="adding interpolation todo and fixed timing issue" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/Home_Weather_Station$core.coverage" NAME="core Coverage Results" MODIFIED="1739537364456" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
