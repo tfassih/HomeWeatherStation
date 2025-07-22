@@ -6,7 +6,7 @@ from tkinter import ttk, messagebox, StringVar
 
 
 class HomeWeatherStationCore:
-    UPDATE_DELAY = 500
+    UPDATE_DELAY = 1000
 
     def __init__(self, root:tk.Tk):
         self.root = root
@@ -83,12 +83,12 @@ class HomeWeatherStationCore:
             i = 0
 
             while i < 3:
-                data = self.serial_connection.readline().decode().strip()
-                if not 'T/H' in data and i == 0:
-                    break
-                if 'T/H' in data:
-                    data = data[3:]
-                col.append(data)
+                data = self.serial_connection.readline().decode('utf-8').strip()
+                clean_data = "".join(str(x) for x in data if str(x).isdigit() or x == ".")
+                print(data)
+                print(clean_data)
+                #data = data.join(x for x in data[i] if x.isdigit() or x == ".")
+                col.append(float(clean_data) if clean_data != "" else "0")
                 i = i + 1
 
             if col and all(x != '' and x is not None for x in col):
@@ -97,15 +97,15 @@ class HomeWeatherStationCore:
 
     def get_temperature(self):
         data = self.get_update_data()
-        self.temperature.set(data[0] + ' °F' if data else '0 °F')
+        self.temperature.set(str(data[1]) + ' °F' if data else '0 °F')
 
     def get_humidity(self):
         data = self.get_update_data()
-        self.humidity.set(data[1] + ' %' if data else '0 %')
+        self.humidity.set(str(data[2]) + ' %' if data else '0 %')
 
     def get_thermistor(self):
         data = self.get_update_data()
-        self.thermistor.set(data[2] + ' °F' if data else '0 °F')
+        self.thermistor.set(str(data[0]) + ' °F' if data else '0 °F')
 
     def schedule_update(self, target_widget, callback):
         target_widget.after(self.UPDATE_DELAY, callback)
@@ -113,11 +113,11 @@ class HomeWeatherStationCore:
 
 def schedule_temperature_update(app):
     app.get_temperature()
-    app.root.after(5000, schedule_temperature_update, app)
+    app.root.after(4000, schedule_temperature_update, app)
 
 def schedule_humidity_update(app):
     app.get_humidity()
-    app.root.after(5000, schedule_humidity_update, app)
+    app.root.after(6000, schedule_humidity_update, app)
 
 def schedule_thermistor_update(app):
     app.get_thermistor()
@@ -134,6 +134,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+###TODO:
+### 1. Add code for fourth order polynomial interpolation to historical data and present it as a real-time graph
 
 ### TODO:
 ### 1. Add code for IR I/O
